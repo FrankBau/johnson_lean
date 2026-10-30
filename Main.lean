@@ -19,6 +19,14 @@ open Johnson
 #guard_msgs in
 #print axioms johnson_guards_vacuous
 
+/-- info: 'Johnson.johnson_worst_case_delay' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms johnson_worst_case_delay
+
+/-- info: 'Johnson.johnson_total_time' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms johnson_total_time
+
 /-! Smoke-test driver: reads cases.txt, prints the trace of `johnson` per case in Python repr format
     (nodes as indices), for a plain `diff` against johnson_traced.py. -/
 

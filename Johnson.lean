@@ -9,3 +9,9 @@ import Johnson.Paths
 import Johnson.Invariant
 import Johnson.Unblock
 import Johnson.Complete
+import Johnson.Trace
+import Johnson.Tally
+import Johnson.RunFacts
+import Johnson.RunSearch
+import Johnson.Delay
+import Johnson.MainTheorems

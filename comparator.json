@@ -1,0 +1,14 @@
+{
+  "challenge_module": "Johnson.Challenge",
+  "solution_module": "Johnson.MainTheorems",
+  "theorem_names": [
+    "Johnson.soundness",
+    "Johnson.completeness",
+    "Johnson.worst_case_delay",
+    "Johnson.total_time",
+    "Johnson.guards_vacuous"
+  ],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "enable_nanoda": true
+}
