@@ -1,0 +1,32 @@
+name: Lean Action CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          # replay the whole environment of the main theorems through the kernel, from scratch
+          leanchecker: "true"
+          leanchecker-args: "--fresh Johnson.MainTheorems"
+      # the main statements with sorry, on definitions only; not part of the default build
+      - name: Build the challenge
+        run: lake build Johnson.Challenge
+      # the statement check of comparator.json: Challenge and MainTheorems state the same theorems on the same definitions
+      - name: Check the challenge against the main theorems
+        run: lake env lean --run CheckChallenge.lean
+      # the Lean executable produces the same traces as the Python reference implementation
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Smoke test
+        run: |
+          pip install networkx
+          ./smoke_test.sh
