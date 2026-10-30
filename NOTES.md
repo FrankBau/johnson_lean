@@ -11,7 +11,6 @@
 - `Python/selfcheck.py`: on 16,000 random digraphs (n = 2..9), `johnson_traced.py` has the outputs of `johnson_paths` in
   `../johnson.py` and of a plain DFS, in the same order, and the same search calls as `johnson_paths` (without its calls of
   search(t)). Largest interval between observable events: 0.66 (4n + 5m).
-- Commits: phases 0 and A as the initial commit; phase B (the delay) is not committed yet.
 
 ## Deviations from the Python code (all deliberate)
 1. The closing edge (v, t) is tested inline, before the blocked test, as `w = s` in Johnson's CIRCUIT. johnson.py calls search(t)
