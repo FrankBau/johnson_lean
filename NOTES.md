@@ -17,10 +17,11 @@
    instead; same outputs, same calls at the other vertices (selfcheck).
 2. Depth guards for termination: `search` calls `search w (h + 1)` only if h + 1 < n, `unblock` calls `unblock w (d + 1)` only if
    d + 1 < n; otherwise it emits `abort`. `guards_vacuous`: never.
-3. B-lists are lists, appended at the end and popped from the front (Johnson's ALGOL), so the trace is deterministic; johnson.py pops
-   a `set` in hash order. The order does not change which vertices get unblocked (Lemma 1).
-4. Cost model: the membership test `v ∉ B[w]` counts as one step, as the stack test does in BS-DFS (O(1) with a bit matrix or a hash
-   set). The Lean program itself tests membership by a linear scan, so the theorems say nothing about the Lean program's own time.
+3. B-lists are lists, appended at the end, emptied at the start of `unblock` and walked from the front, so the trace is deterministic;
+   johnson.py pops a `set` in hash order. The order does not change which vertices get unblocked (Lemma 1). Johnson's ALGOL and
+   johnson.py delete each entry just before handling it, which takes the same steps (argued, not in Lean; AllSimplePaths.md, section 10).
+4. Cost model: the membership test `v ∉ B[w]` counts as one step, as the stack test does in BS-DFS (worst-case O(1) and O(n + m) space with per-edge records, see
+   AllSimplePaths.md). The Lean program itself tests membership by a linear scan, so the theorems say nothing about the Lean program's own time.
 
 ## Soundness and completeness (Johnson/Invariant.lean, Unblock.lean, Complete.lean)
 Invariant between steps, for the stack S: (A) stack vertices are blocked, (T) t is never blocked, (B) a blocked vertex off the stack
